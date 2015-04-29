@@ -7,7 +7,10 @@ public:
 	Transation(unsigned count, int* items) :count(count), items(items){}
 	~Transation(){ delete items; }
 	unsigned get_count() const{ return count; }
+	void mod_count(unsigned new_count){ count = new_count; }
 	int* get_items() const{ return items; }
+	//把items向前推进
+	void go();
 
 private:
 	unsigned count;//有多少个item
