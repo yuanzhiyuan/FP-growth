@@ -72,6 +72,7 @@
   <ItemGroup>
     <ClCompile Include="FP-tree.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="Node.cpp" />
     <ClCompile Include="Transation.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
