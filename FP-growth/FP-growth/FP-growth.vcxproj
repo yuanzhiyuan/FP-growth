@@ -65,12 +65,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="FP-tree.h" />
+    <ClInclude Include="FPgrowth.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Transation.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FP-tree.cpp" />
+    <ClCompile Include="FPgrowth.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Transation.cpp" />
