@@ -4,7 +4,7 @@
 #include <set>
 struct freq_items{
 	//数组大小
-	freq_items():items(0),count(0),times(0){}
+	freq_items():items(new int),count(0),times(0){}
 	unsigned count;
 	int* items;
 	//支持度

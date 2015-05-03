@@ -11,7 +11,7 @@ void FPgrowth::growth(){
 	for (iter i = head->rbegin(); i != head->rend(); i++){
 		growth(tree, *i, nullptr);
 	}*/
-	growth(tree, {}, 0);
+	growth(tree, new int, 0);
 }
 
 void FPgrowth::growth(FPtree* tree, int* cond,int cond_len){
