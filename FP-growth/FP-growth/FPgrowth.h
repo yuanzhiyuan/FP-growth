@@ -13,7 +13,7 @@ struct freq_items{
 
 class FPgrowth{
 public:
-	FPgrowth():tree(0),result(0){}
+	FPgrowth():tree(0),result(new set<freq_items*>){}
 	void set_FPtree(FPtree* ptree){ tree = ptree; }
 	
 	void growth();

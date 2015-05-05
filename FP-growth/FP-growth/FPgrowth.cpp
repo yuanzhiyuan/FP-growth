@@ -33,7 +33,7 @@ void FPgrowth::growth(FPtree* tree, int* cond,int cond_len){
 	}
 	else{
 		typedef vector<head_node*>::reverse_iterator iter;
-		vector<head_node*>* head = tree->get_head();
+		//vector<head_node*>* head = tree->get_head();
 		for (iter i = head->rbegin(); i != head->rend(); i++){
 			growth(tree, *i, cond,cond_len);
 		}
@@ -62,7 +62,7 @@ void FPgrowth::growth(FPtree* tree, head_node* item_node, int* cond_item,int con
 		int tran_count = 0;
 		//当前遍历到的节点的count就是该节点条件模式基的count
 		unsigned count = now->getsup();
-		trans_times[ind] = count;
+		trans_times[ind++] = count;
 		while (now_->getid() != -1){
 			*(items + tran_count) = now_->getid();
 			tran_count++;
@@ -93,9 +93,10 @@ void FPgrowth::growth(FPtree* tree, head_node* item_node, int* cond_item,int con
 	ind = 0;
 	for (Transation* tran : *cond_items){
 		cond_tree->processTrans(*tran, trans_times[ind], cond_tree->get_root());
+		ind++;
 	}
 	//条件tree构造好了
-	*(cond_item + 1) = item_node->id;
+	*(cond_item + cond_len) = item_node->id;
 	cond_len++;
 	growth(cond_tree, cond_item,cond_len);
 
@@ -135,7 +136,7 @@ set<freq_items*> FPgrowth::gen_comb(FPtree* tree){
 void FPgrowth::output(){
 	cout << endl;
 	for (freq_items* fi : *result){
-		for_each(fi->items, fi->items + fi->count, [=](int a){cout << a << "  "; });
+		for_each(fi->items, fi->items + fi->count, [=](int a){cout << char(a) << "  "; });
 		cout << "times:" << fi->times;
 
 		cout << endl;
@@ -143,7 +144,7 @@ void FPgrowth::output(){
 }
 
 int main(){
-	FPtree tree(1);
+	FPtree tree(3);
 	int items1[] = { 'a', 'b', 'd', 'e' };
 	Transation tran1(4, items1);
 	int items2[] = { 'b', 'c', 'e' };
