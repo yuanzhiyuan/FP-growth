@@ -121,13 +121,13 @@ void FPtree::processTrans(Transation& tran, unsigned times,Node* node){
 	unordered_map<int, Node*>* children_map = node->getChildren();
 	unordered_map<int, head_node*>* id_head_map = get_id_head_map();
 	if (tran_count != 0){
-
+		if (id_head_map->find(items[0]) == id_head_map->end())	return;
 		unordered_map<int, Node*>::iterator i = children_map->find(items[0]);
 		if (i != children_map->end()){
 			Node* inode = i->second;//node*
 			inode->add_count(times);
 			tran.go();
-			processTrans(tran, inode);
+			processTrans(tran, times,inode);
 
 		}
 		else{
@@ -149,7 +149,7 @@ void FPtree::processTrans(Transation& tran, unsigned times,Node* node){
 			new_node->add_count(times);
 			children_map->insert(make_pair(items[0], new_node));
 			tran.go();
-			processTrans(tran, new_node);
+			processTrans(tran, times,new_node);
 
 		}
 	}

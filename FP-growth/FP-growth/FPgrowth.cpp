@@ -3,7 +3,8 @@
 #include <algorithm>
 #include <iterator>
 #include <iostream>
-
+//经过构造后，发现不满足最小支持度要求的item1，怎么处理含item1的transation
+//条件tree要不要去掉不满足最小支持度的item
 using namespace std;
 void FPgrowth::growth(){
 	/*typedef vector<head_node*>::reverse_iterator iter;
