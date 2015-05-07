@@ -16,12 +16,26 @@ Node::Node(Node* next){
 	node = new Node_(next);
 }
 Node_::~Node_(){
-	if (parent)	delete parent;
-	if (children_map) delete children_map;
+	//if (parent)	delete parent;
+	if (children_map){
+		//delete children_map;
+	}
 	//如果删掉next节点，FP-tree.cpp第87行do while（0）结束后删除dummy会导致错误
 	//if (next) delete next;
 }
 Node::~Node(){
 	
 	if (node) delete node;
+}
+
+void Node::remove_children(){
+	if (!node->children_map) return;
+	for (auto i = node->children_map->begin(); i != node->children_map->end(); i++){
+		i->second->remove_children();
+	}
+	delete node->children_map;
+	
+	node->children_map = 0;
+	delete node;
+	node = 0;
 }

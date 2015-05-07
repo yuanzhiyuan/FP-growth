@@ -18,6 +18,7 @@ struct head_node{
 	unsigned sup;
 	Node* node_link;
 	void add_sup(unsigned added = 1){ sup += added; }
+	~head_node(){ if (node_link) delete node_link; }
 	head_node(int id,unsigned sup=1):id(id),sup(sup),node_link(0){}
 	//定义<操作符，便于FP-tree.cpp中，sort_head最后的排序操作（非降序）
 	bool operator<(head_node node){ return sup>node.sup; }
@@ -28,7 +29,7 @@ class FPtree{
 
 public:
 	FPtree(unsigned sup) :min_sup(sup),root(new Node(-1,nullptr)),head(new vector<head_node*>),id_sup_map(new unordered_map<int,unsigned>()),id_head_map(new unordered_map<int,head_node*>()),id_index_map(new unordered_map<int,int>()){}
-	
+	~FPtree();
 	void construction(const vector<Transation>&);
 	void sort_head(const vector<Transation>&);
 	void sort_head();//this.head已经有数据，只把它进行最小支持度检查和排序处理

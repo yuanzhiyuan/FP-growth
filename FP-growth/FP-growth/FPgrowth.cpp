@@ -174,7 +174,9 @@ int main(){
 	fpgrowth.growth();
 	fpgrowth.output();
 
-
+	/*Node r(-1, nullptr);
+	Node a(1, &r);
+	cout << a.get_parent()->getid();*/
 
 	//cout << "hehe";
 	//tree.outputTree();

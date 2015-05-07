@@ -9,6 +9,31 @@
 
 using namespace std;
 
+
+FPtree::~FPtree(){
+	if (root)
+	{
+		root->remove_children();
+
+		delete root;
+	}
+	root = 0;
+	if (head){
+		for (auto each : *head){
+			delete each;
+		}
+		delete head;
+		head = 0;
+	}
+	if (id_sup_map)	delete id_sup_map;
+	id_sup_map = 0;
+	if (id_head_map)	delete id_head_map;
+	id_head_map = 0;
+	if (id_index_map)	delete id_index_map;
+	id_index_map = 0;
+
+}
+
 void FPtree::sort_head(){
 	//删掉小于最小支持度的head节点
 	head->erase(remove_if(head->begin(), head->end(), [=](const head_node* n)->bool{return n->sup < get_min_sup(); }), head->end());

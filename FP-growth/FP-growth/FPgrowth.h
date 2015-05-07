@@ -7,6 +7,7 @@ struct freq_items{
 	freq_items():items(new int),count(0),times(0){}
 	unsigned count;
 	int* items;
+	~freq_items(){ if (items) delete[] items; }
 	//Ö§³Ö¶È
 	unsigned times;
 };
@@ -14,6 +15,7 @@ struct freq_items{
 class FPgrowth{
 public:
 	FPgrowth():tree(0),result(new set<freq_items*>){}
+	~FPgrowth(){ if (tree) delete tree; }
 	void set_FPtree(FPtree* ptree){ tree = ptree; }
 	
 	void growth();
